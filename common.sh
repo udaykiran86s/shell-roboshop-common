@@ -98,8 +98,14 @@ VALIDATE $? "Restarted $app_name"
 }
 
 
-print_total_time=(){
+print_total_time(){
     END_TIME=$(date +%s)
-    TOTAL_TIME= ( $END_TIME - $START_TIME)
+    TOTAL_TIME= $(( $END_TIME - $START_TIME))
     echo -e "script executed in :  $y $TOTAL_TIME Seconds $n"
 }
+
+# print_total_time(){
+    END_TIME=$(date +%s)
+    TOTAL_TIME=$(( $END_TIME - $START_TIME ))
+    echo -e "Script executed in: $Y $TOTAL_TIME Seconds $N"
+# }
