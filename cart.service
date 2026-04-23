@@ -1,1 +1,14 @@
-#copy from documentation
+[Unit]
+Description = Cart Service
+[Service]
+User=roboshop
+// highlight-start
+Environment=REDIS_HOST=redis.udaykiran.site
+Environment=CATALOGUE_HOST=catalogue.udaykiran.site
+Environment=CATALOGUE_PORT=8080
+// highlight-end
+ExecStart=/bin/node /app/server.js
+SyslogIdentifier=cart
+
+[Install]
+WantedBy=multi-user.target
