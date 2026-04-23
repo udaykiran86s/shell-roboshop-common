@@ -18,3 +18,4 @@ echo "MongoDB setup completed successfully" | tee -a $LOG_FILE
 
 app_restart
 print_total_time
+
