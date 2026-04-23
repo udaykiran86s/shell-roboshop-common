@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./ common.sh
+source ./common.sh
 check_root
 
 cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
@@ -15,4 +15,5 @@ systemctl restart mongod &>>$LOG_FILE
 
 echo "MongoDB setup completed successfully" | tee -a $LOG_FILE
 
+app_restart
 print_total_time

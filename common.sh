@@ -40,13 +40,13 @@ nodejs_setup(){
     dnf module disable nodejs -y &>>$LOG_FILE
     VALIDATE $? "Disabling NodeJS"
 
-    dnf module enable nodejs:20 -y&>>$LOG_FILE
+    dnf module enable nodejs:20 -y &>>$LOG_FILE
     VALIDATE $? "Enabling NodeJS 20"
 
     dnf install nodejs -y
     VALIDATE $? "Installing NodeJS"
 
-    npm install &>>$LOG_FILE
+    npm install -y &>>$LOG_FILE
     VALIDATE $? "Install dependencies"
 
 }
@@ -59,10 +59,10 @@ app_setup(){
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
     VALIDATE $? "Creating system user"
     else
-        echo -e "User already exist ... $Y SKIPPING $N"
+        echo -e "User already exist ... $y SKIPPING $n"
     fi
     
-    mkdir /app 
+    mkdir -p /app 
     VALIDATE $? "Creating app directory"
 
     curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip 
@@ -100,12 +100,7 @@ VALIDATE $? "Restarted $app_name"
 
 print_total_time(){
     END_TIME=$(date +%s)
-    TOTAL_TIME= $(( $END_TIME - $START_TIME))
+    TOTAL_TIME=$(( $END_TIME - $START_TIME))
     echo -e "script executed in :  $y $TOTAL_TIME Seconds $n"
 }
 
-# print_total_time(){
-    END_TIME=$(date +%s)
-    TOTAL_TIME=$(( $END_TIME - $START_TIME ))
-    echo -e "Script executed in: $Y $TOTAL_TIME Seconds $N"
-# }
