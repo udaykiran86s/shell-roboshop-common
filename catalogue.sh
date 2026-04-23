@@ -22,7 +22,8 @@ VALIDATE $? "Install MongoDB client"
 #     echo -e "app_name products already loaded ... $Y SKIPPING $N"
 # fi
 INDEX=$(mongosh $MONGODB_HOST --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
-if [ $INDEX -lt 0 ]; then
+
+if [ -z "$INDEX" ] || [ "$INDEX" -lt 0 ]; then
     mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
     VALIDATE $? "Load catalogue products"
 else
