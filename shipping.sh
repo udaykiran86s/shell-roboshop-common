@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #set -e
+set -euo pipefail
 source ./common.sh
 app_name=shipping
 
@@ -11,7 +12,7 @@ systemd_setup
 
 dnf install mysql -y  &>>$LOG_FILE
  
- 
+
 mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities' &>>$LOG_FILE
 if [ $? -ne 0 ]; then
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql &>>$LOG_FILE
