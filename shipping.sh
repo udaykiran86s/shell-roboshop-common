@@ -9,7 +9,7 @@ check_root
 app_setup
 java_setup
 systemd_setup
-
+MYSQL_HOST=mysql.udaykiran.site
 dnf install mysql -y  &>>$LOG_FILE
  
 
