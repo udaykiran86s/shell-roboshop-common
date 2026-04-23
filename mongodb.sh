@@ -1,4 +1,5 @@
 #!/bin/bash
+app_name="mongo"
 source ./common.sh
 check_root
 
